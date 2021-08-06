@@ -189,6 +189,6 @@ class Book:
         Backup/Rename original comic file
         """
         backup_path = self.path.with_suffix(self.path.suffix + '.bak')
-        # Delete previous backup file, if exists. Probably needed for Windows
-        backup_path.unlink(missing_ok=True)
+        # TODO Delete previous backup file, if exists. Probably needed for Windows
+        # backup_path.unlink(missing_ok=True)
         self.path.rename(backup_path)
