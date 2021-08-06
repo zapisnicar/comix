@@ -1,4 +1,4 @@
-# ComiX
+# ComiX -> work in progress...
 
 Comic Book Tools for Python:
 
