@@ -1,4 +1,4 @@
-# ComiX -> work in progress...
+# ComiX
 
 Comic Book Tools for Python:
 
@@ -12,9 +12,13 @@ Examples:
 
     from comix import Book, get_books
 
-    # With context manager, set <Title> tag text to 'Asterix'
-    with Book('filepath') as comic:
-        comic.meta.title = 'Asterix'
+    # Scan folder for comic book files:    
+    for comic_file in get_books('folder_with_comics'):
+        # With context manager, set <Series> tag to Asterix
+        with Book(comic_file) as comic:
+            comic.meta.series = 'Asterix'
+            # Get issue from filename and write to <Number> tag
+            comic.meta.number = comic.path.stem[8:10]
 
     or:
     
