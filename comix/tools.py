@@ -13,7 +13,7 @@ from comix.container import Cbz, Cbr, Pdf
 from comix.metadata import ComicRack
 
 
-def get_comics(directory: Union[str, Path], show_progress: bool = True) -> Iterator[Path]:
+def get_books(directory: Union[str, Path], show_progress: bool = True) -> Iterator[Path]:
     """
     Helper function - recursively scan folder for comic book files: CBZ, CBR and PDF
     with progress bar

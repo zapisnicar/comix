@@ -1,7 +1,7 @@
 
 
 import pytest
-from comix.tools import Book, get_comics
+from comix.tools import Book, get_books
 from pathlib import Path
 from shutil import which
 

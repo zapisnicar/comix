@@ -10,7 +10,7 @@ Comic Book Tools for Python:
 
 Examples:
 
-    from comix import Book, get_comics
+    from comix import Book, get_books
 
     # With context manager, set <Title> tag text to 'Asterix'
     with Book('filepath') as comic:
@@ -29,7 +29,7 @@ Examples:
     or:
 
     # Convert all CBR and PDF books in 'folder_with_comics' to CBZ format
-    for comic_file in get_comics('folder_with_comics'):
+    for comic_file in get_books('folder_with_comics'):
         comic = Book(comic_file)
         if comic.format in ['pdf', 'cbr']:
             comic.open()
