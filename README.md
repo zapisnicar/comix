@@ -44,3 +44,15 @@ https://sourceforge.net/projects/infozip/files/
 https://www.rarlab.com/download.htm
 
 Tested in Python 3.7 for Linux.
+
+Test setup:
+
+    python -m pip install --upgrade pip
+    pip install pytest
+    pip install -e ./
+    pytest
+
+Build setup:
+
+    pip install build
+    python -m build

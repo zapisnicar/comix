@@ -4,3 +4,4 @@ PyMuPDF
 unrar
 
 pytest
+build
