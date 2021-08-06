@@ -132,7 +132,7 @@ class Book:
             return True
         if self._input_format == 'pdf':  # TODO test PDF file?
             return True
-        raise RuntimeError('Unknown comic book file suffix: {self._input_format}')
+        return False
 
     def is_changed(self) -> bool:
         """
@@ -162,8 +162,7 @@ class Book:
             # Remember current state of files
             self._content_old = self.snapshot()
         else:
-            print(f'Wrong file type: {self.path}')
-            # raise TypeError(f'Wrong file type: {self.path}')
+            raise TypeError(f'Wrong file type: {self.path}')
 
     def pack(self) -> None:
         """
@@ -182,7 +181,7 @@ class Book:
             self.backup()
             Pdf.pack(new_name, self.working_dir)
         else:
-            raise ValueError('Unknown comic file extension')
+            raise TypeError(f'Wrong file type: {self.path}')
 
     def backup(self) -> None:
         """
