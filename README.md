@@ -1,12 +1,18 @@
 # ComiX
 
-Comic Book Tools for Python:
+Comic Book Tools for Python. 
 
-- Scan directories for comic book files (CBZ/CBR/PDF).
-  
-- Change content, extract files, convert to another format or edit metadata from ComicInfo.xml file. PDF container will ignore metadata.
+A handy tool for bulk comic book editing and organization:
 
-- Useful for bulk editing.
+- Scan directories for file formats CBZ, CBR, and PDF
+
+- Convert between file formats CBZ, CBR, and PDF
+
+- Extract files from CBZ, CBR, and PDF
+
+- Edit content of files extracted from CBZ, CBR, and PDF
+
+- Edit metadata in ComicInfo.xml (Note: PDF container will ignore metadata)
 
 Examples:
 
