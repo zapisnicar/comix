@@ -47,13 +47,15 @@ Examples:
             comic.close()
 
 
-Required programs: zip, unzip, rar and unrar - command line versions, installed in PATH:
-
-https://sourceforge.net/projects/infozip/files/
+Required programs: rar and unrar - command line versions, installed in PATH:
 
 https://www.rarlab.com/download.htm
 
-Tested in Python 3.7 for Linux.
+Zip and unzip are optional, for speed only:
+
+https://sourceforge.net/projects/infozip/files/
+
+Tested in Python 3.7 for Linux and Python 3.9 for Windows
 
 Test setup:
 
