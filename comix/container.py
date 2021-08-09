@@ -14,7 +14,6 @@ from shutil import which
 import platform
 
 
-
 class Container:
     """
     Base class for container classes Cbz, Cbr and Pdf
