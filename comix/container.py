@@ -9,9 +9,10 @@ import io
 from pathlib import Path
 from subprocess import DEVNULL, STDOUT, check_call
 from PIL import Image  # type: ignore
-from zipfile import is_zipfile
-from unrar import rarfile  # type: ignore
+from zipfile import is_zipfile, ZipFile, ZIP_DEFLATED
 from shutil import which
+import platform
+
 
 
 class Container:
@@ -54,18 +55,34 @@ class Cbz(Container):
         if which('unzip'):
             check_call(['unzip', str(filename), '-d', str(extract_to)], stdout=DEVNULL, stderr=STDOUT)
         else:
-            raise FileNotFoundError("Program 'unzip' is not installed")
+            Cbz._my_unzip(filename, extract_to)
 
     @staticmethod
     def pack(filename: Union[str, Path], source_dir: Union[str, Path]) -> None:
         if which('zip'):
             check_call(['zip', '-r', str(filename), '.'], stdout=DEVNULL, stderr=STDOUT, cwd=str(source_dir))
         else:
-            raise FileNotFoundError("Program 'zip' is not installed")
+            Cbz._my_zip(filename, source_dir)
 
     @staticmethod
     def test(filename: Union[str, Path]) -> bool:
         return is_zipfile(str(filename))
+
+    @staticmethod
+    def _my_zip(archive_name: Union[str, Path], source_dir: Union[str, Path]) -> None:
+        archive_name = str(archive_name)
+        source_dir = str(source_dir)
+        with ZipFile(archive_name, 'w', ZIP_DEFLATED) as zip_obj:
+            for file_path in sorted(Path(source_dir).rglob('*')):
+                if file_path.is_file():
+                    zip_obj.write(file_path, file_path.relative_to(source_dir))
+
+    @staticmethod
+    def _my_unzip(archive_name: Union[str, Path], destination_dir: Union[str, Path]) -> None:
+        archive_name = str(archive_name)
+        destination_dir = str(destination_dir)
+        with ZipFile(archive_name, 'r') as zip_obj:
+            zip_obj.extractall(destination_dir)
 
 
 class Cbr(Container):
@@ -88,7 +105,11 @@ class Cbr(Container):
 
     @staticmethod
     def test(filename: Union[str, Path]) -> bool:
-        return rarfile.is_rarfile(str(filename))
+        with open(filename, 'rb') as file:
+            if file.read(6) == b'\x52\x61\x72\x21\x1a\x07':
+                return True
+            else:
+                return False
 
 
 class Pdf(Container):
