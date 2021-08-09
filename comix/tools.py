@@ -99,7 +99,7 @@ class Book:
         suffix = self.path.suffix.lower()
         if suffix in ['.cbz', '.cbr', '.pdf']:
             return suffix[1:]
-        # TODO raise error?
+        # TODO raise ValueError('Unknown comic file extension')
         return None
 
     @format.setter
@@ -130,7 +130,7 @@ class Book:
             return True
         if self._input_format == 'cbr' and Cbr.test(self.path):
             return True
-        if self._input_format == 'pdf':  # TODO test PDF file?
+        if self._input_format == 'pdf' and Pdf.test(self.path):
             return True
         return False
 

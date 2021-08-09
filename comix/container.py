@@ -154,4 +154,10 @@ class Pdf(Container):
         pdf_doc.save(str(filename))
         pdf_doc.close()
 
-    # TODO test() method for pdf container
+    @staticmethod
+    def test(filename: Union[str, Path]) -> bool:
+        with open(filename, 'rb') as file:
+            if file.read(4) == b'%PDF':
+                return True
+            else:
+                return False
