@@ -1,7 +1,6 @@
 Pillow
 progressbar2
 PyMuPDF
-unrar
 
 pytest
 build
